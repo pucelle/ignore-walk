@@ -2,6 +2,8 @@
 
 Will ignore `.git` directory.
 
+Adds a `alwaysIncludeGlobPattern: string` option to always includes some files.
+
 
 # ignore-walk
 

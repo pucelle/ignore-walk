@@ -20,6 +20,15 @@ class Walker extends EE {
 		this.result = this.parent ? this.parent.result : []
 		this.entries = null
 		this.sawError = false
+
+		if (opts.alwaysIncludeGlobPattern) {
+			this.alwaysIncludeMatch = new Minimatch(opts.alwaysIncludeGlobPattern, {
+				matchBase: true,
+				dot: true,
+				flipNegate: true,
+				nocase: true
+			})
+		}
 	}
 
 	sort (a, b) {
@@ -193,6 +202,25 @@ class Walker extends EE {
 		if (this.parent && this.parent.filterEntry) {
 			var pt = this.basename + "/" + entry
 			included = this.parent.filterEntry(pt, partial)
+		}
+
+		if(this.alwaysIncludeMatch) {
+			let rule = this.alwaysIncludeMatch
+
+			let match = rule.match('/' + entry)
+				||rule.match(entry)
+				|| (!!partial && (
+						rule.match('/' + entry + '/') ||
+						rule.match(entry + '/'))
+					)
+				|| (!!partial && rule.negate && (
+						rule.match('/' + entry, true) ||
+						rule.match(entry, true))
+					)
+
+			if (match) {
+				return true
+			}
 		}
 
 		this.ignoreFiles.forEach(f => {
