@@ -1,6 +1,6 @@
 # Modifications after fork
 
-Will ignore `.git` directory.
+Will ignore `.git` directory to run much faster.
 
 Adds a `alwaysIncludeGlobPattern: string` option to always includes some files.
 
