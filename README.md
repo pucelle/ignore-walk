@@ -1,4 +1,4 @@
-# Modifications after fork
+# Modifications after forking
 
 Will ignore `.git` directory to run much faster.
 
