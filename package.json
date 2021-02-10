@@ -1,5 +1,5 @@
 {
-  "name": "ignore-walk",
+  "name": "@pucelle/ignore-walk",
   "version": "3.0.1",
   "description": "Nested/recursive `.gitignore`/`.npmignore` parsing and filtering.",
   "main": "index.js",
